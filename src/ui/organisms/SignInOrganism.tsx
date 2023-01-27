@@ -1,5 +1,5 @@
-import H1 from "../atoms/h1/H1";
-import SignInForm from "../molecules/signIn/SignInForm"
+import H1 from "ui/atoms/h1/H1";
+import SignInForm from "ui/molecules/signIn/SignInForm"
 
 const SignInOrganism = () => {
     return (

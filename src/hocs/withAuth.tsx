@@ -6,14 +6,15 @@ const withAuth = (Component: FC) => {
   return () => {
 
     const [currentUser, setCurrentUser] = React.useState(null);
+    const [isFetching, setIsFetching] = React.useState(true);
 
     const onSuccess = (body: any) => {
       setCurrentUser(body.data);
+      setIsFetching(false);
     }
 
     const {
       onFetch,
-      isFetching,
     } = useFetch("/validate_token", onSuccess);
 
     const validateToken = async () => {

@@ -14,9 +14,20 @@ const useFetch = (path: string, onSuccess: (body: any, headers: any) => void) =>
 
     const onFetch = async (method = 'get', body = undefined) => {
         const _path = path.endsWith('/') ? path.substr(0, path.length - 1) : path;
+        let headers = {
+            accessToken: "",
+            client: "",
+            uid: "",
+        }, _headers;
         try {
-            const _headers = localStorage.getItem("headers");
-            const headers = JSON.parse(_headers);
+            _headers = localStorage.getItem("headers");
+            if(_headers) headers = JSON.parse(_headers);
+        } catch (error) {
+            console.log(error);
+            
+        }
+        
+        try {
             setIsFetching(true);
             const res = await fetch(`${host}${_path}`, {
                 method,

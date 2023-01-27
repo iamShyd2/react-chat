@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import SignInPage from './pages/SignInPage';
+import HomePage from 'ui/pages/HomePage';
+import SignInPage from 'ui/pages/SignInPage';
 
 const stackBuilder = (Component, path) => ({ Component, path });
 
@@ -19,6 +19,7 @@ const App = () => {
         {
           stacks.map(({ Component, path }, i) =>
             <Route
+              key={i}
               path={path}
               element={<Component />}
             />

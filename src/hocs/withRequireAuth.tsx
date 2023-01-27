@@ -5,10 +5,13 @@ import withAuth from "./withAuth";
 const withRequireAuth = (Component: React.FC) => {
     return withAuth(() => {
         const {
-            currentUser
+            currentUser,
+            isFetching,
         } = useAuth();
 
-        const location = useLocation();
+        const location = useLocation();        
+
+        if(isFetching) return null;        
 
         if (currentUser == null) return <Navigate
             to="/sign_in"

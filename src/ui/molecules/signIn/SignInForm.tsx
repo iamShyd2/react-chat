@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
-import Button from "../../atoms/Button";
-import TextField from "../../atoms/TextField";
+import Button from "ui/atoms/Button";
+import TextField from "ui/atoms/TextField";
 import useSignIn from "./useSignIn";
 
 const SignInForm = () => {

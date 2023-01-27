@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import useFetch from "../../lib/useFetch";
+import useFetch from "lib/useFetch";
 
 const useSignIn = () => {
 
