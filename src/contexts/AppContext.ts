@@ -5,6 +5,7 @@ export interface IAppContext {
     signOut: () => void
     setCurrentUser: Dispatch<SetStateAction<null>>
     isFetching: boolean
+    cable: any
 }
   
 export default createContext<IAppContext>({} as IAppContext);

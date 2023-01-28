@@ -1,12 +1,13 @@
 import { Grid } from "@material-ui/core";
+import useAuth from "hooks/useAuth";
+import useChannel from "hooks/useChannel";
 import useFetch from "lib/useFetch";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import Message from "ui/molecules/message/Message";
-import { host } from "../../config";
-import ActionCable from 'actioncable';
 
 const MessagesList = () => {
+
     const [messages, setMessages] = useState([]);
     const messagesRef = useRef<any[]>();
 
@@ -34,22 +35,12 @@ const MessagesList = () => {
         onFetch();
     }, []);
 
-    useEffect(() => {
-        const headers = localStorage.getItem("headers");
-        const {
-            accessToken,
-            client,
-            uid
-        } = JSON.parse(headers);
-        const c = ActionCable.createConsumer(`${host}/cable?token=${accessToken}&client=${client}&uid=${uid}`);
-        c.subscriptions.create({ channel: "UserChannel" }, {
-            connected: () => console.log("connected"),
-            received: (message) => {
-                setMessages([...messagesRef.current, message.message]);
-            }
-        });
-        return () => c.disconnect();
-    }, []);
+
+    const onReceived = (message) => {
+        setMessages([...messagesRef.current, message.message]);
+    }
+    
+    useChannel("UserChannel", { received: onReceived });
 
     return (
         <ul

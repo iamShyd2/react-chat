@@ -1,6 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import useFetch from '../lib/useFetch';
 import AppContext from '../contexts/AppContext';
+import useCable from 'hooks/useCable';
+
 
 const withAuth = (Component: FC) => {
   return () => {
@@ -13,9 +15,7 @@ const withAuth = (Component: FC) => {
       setIsFetching(false);
     }
 
-    const handleError = () => {
-      setIsFetching(false);
-    }
+    const handleError = () => setIsFetching(false);
 
     const {
       onFetch,
@@ -34,11 +34,14 @@ const withAuth = (Component: FC) => {
       setCurrentUser(null);
     }
 
+    const { cable } = useCable(currentUser);
+
     const appContext = {
       currentUser,
       isFetching,
       signOut,
       setCurrentUser,
+      cable,
     }
 
     if (isFetching) return null;
