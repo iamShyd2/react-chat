@@ -7,7 +7,7 @@ import ChatroomsOrganism from "./ChatroomsList";
 const HomeContent = () => {
     return (
         <Grid container justifyContent="center" style={{ marginTop: 40 }}>
-            <Grid item lg={6}>
+            <Grid item lg={6} xs={12}>
                 <Paper>
                     <H2>Chats</H2>
                     <ChatroomsOrganism />

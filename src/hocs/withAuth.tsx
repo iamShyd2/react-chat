@@ -13,9 +13,13 @@ const withAuth = (Component: FC) => {
       setIsFetching(false);
     }
 
+    const handleError = () => {
+      setIsFetching(false);
+    }
+
     const {
       onFetch,
-    } = useFetch("/validate_token", onSuccess);
+    } = useFetch("/validate_token", onSuccess, handleError);
 
     const validateToken = async () => {
       await onFetch();

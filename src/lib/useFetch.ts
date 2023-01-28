@@ -8,11 +8,11 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') host = "htt
 
 export const Host = host;
 
-const useFetch = (path: string, onSuccess: (body: any, headers: any) => void) => {
+const useFetch = (path: string, onSuccess: (body: any, headers: any) => void, handleError = (res: any) => {}) => {
 
     const [isFetching, setIsFetching] = React.useState(false);
 
-    const onFetch = async (method = 'get', body = undefined) => {
+    const onFetch = async (method = 'get', _body = undefined) => {
         const _path = path.endsWith('/') ? path.substr(0, path.length - 1) : path;
         let headers = {
             accessToken: "",
@@ -38,12 +38,13 @@ const useFetch = (path: string, onSuccess: (body: any, headers: any) => void) =>
                     "client": headers.client,
                     "uid": headers.uid,
                 },
-                body: JSON.stringify(body)
+                body: JSON.stringify(_body)
             });
             if (res.ok) {
                 const body = await res.json();
                 onSuccess(body, res.headers);
             }
+            else handleError(res);
         } catch (e) {
             console.log(e);
             

@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from 'ui/pages/HomePage';
+import ShowChatPage from 'ui/pages/ShowChatPage';
 import SignInPage from 'ui/pages/SignInPage';
 
 const stackBuilder = (Component, path) => ({ Component, path });
@@ -8,7 +9,7 @@ const stacks = [
   stackBuilder(SignInPage, "/sign_in"),
   stackBuilder(HomePage, "/"),
   //stackBuilder(NewChatroom, "/chatrooms/new"),
-  //stackBuilder(ShowChatroom, "/chat/:id"),
+  stackBuilder(ShowChatPage, "/chat/:id"),
 ];
 
 const App = () => {

@@ -33,8 +33,6 @@ const AppHeader = () => {
                     Chats
                 </Typography>
                 <Avatar
-                    component={Link}
-                    to="/profile"
                     src={avatar}
                 />
             </Toolbar>
