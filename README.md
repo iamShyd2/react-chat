@@ -1,4 +1,4 @@
-# Chat App Web - Ongoing
+# Chat App Web
 Web front-end for a chat platform application
 
 ## Screenshot
