@@ -21,7 +21,7 @@ const ChatroomsList = () => {
         let chatrooms = chatroomsRef.current;
         let messageChatroom = JSON.parse(message.chatroom);  
         const selected = chatrooms.filter((chatroom) => chatroom.id === messageChatroom.id);
-        console.log(selected);
+
         
         if(selected.length > 0){
             const _s = selected[0];
